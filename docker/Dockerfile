@@ -17,7 +17,9 @@ RUN set -ex; \
 	libcurl4-nss-dev \
 	libgtk3.0 \
 	libgconf-2-4 \
+  libgles2 \
 	libasound2 \
+  libx11-xcb1 \
 	libxtst6 \
 	libxss1 \
 	language-pack-zh-hans \
@@ -43,7 +45,7 @@ VOLUME [ "/home/node/weapp", "/home/node/.config/微信web开发者工具" ]
 
 COPY dist /app
 COPY docker/entrypoint.sh /entrypoint.sh
-
+RUN cp -v /usr/lib/x86_64-linux-gnu/libGLESv2.so /app
 ENTRYPOINT [ "/entrypoint.sh" ]
 
-CMD [ "/app/launch.sh", "--disable-gpu" ]
+CMD [ "/app/launch.sh" ]
